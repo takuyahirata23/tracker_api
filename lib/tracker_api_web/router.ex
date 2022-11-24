@@ -80,6 +80,12 @@ defmodule TrackerWeb.Router do
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
   end
 
+  scope "/admin", TrackerWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/makes", Admin.MakeController
+  end
+
   scope "/", TrackerWeb do
     pipe_through [:browser]
 
