@@ -1,3 +1,10 @@
 <div>
-  <h1 >Makes</h1>
+  <h1>Makes</h1>
+  <a href={Routes.make_path(@conn, :new)}>Create new make</a>
+
+  <ul>
+    <%= for make <- @makes do %>
+      <li><%= make.name %></li>
+    <% end %>
+  </ul>
 </div>

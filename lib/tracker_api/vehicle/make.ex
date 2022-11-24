@@ -11,5 +11,6 @@ defmodule Tracker.Vehicle.Make do
     makes
     |> cast(attrs, [:name])
     |> validate_length(:name, min: 2, max: 30)
+    |> unique_constraint(:name, message: "#{attrs["name"]} already exists")
   end
 end

@@ -83,7 +83,7 @@ defmodule TrackerWeb.Router do
   scope "/admin", TrackerWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/makes", Admin.MakeController, :index
+    resources "/makes", Admin.MakeController
   end
 
   scope "/", TrackerWeb do
