@@ -89,4 +89,13 @@ defmodule TrackerWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
   end
+
+  scope "/" do
+    pipe_through :api
+    forward "/api", Absinthe.Plug, schema: TrackerWeb.Schema.Schema
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: TrackerWeb.Schema.Schema,
+      interface: :simple
+  end
 end
