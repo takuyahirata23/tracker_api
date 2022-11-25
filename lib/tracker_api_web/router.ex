@@ -17,8 +17,8 @@ defmodule TrackerWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :authenticated do
-    plug Tracer.Plug.Authenticate
+  pipeline :set_current_user do
+    plug Tracker.Plugs.SetCurrentUser
   end
 
   scope "/", TrackerWeb do
@@ -101,12 +101,16 @@ defmodule TrackerWeb.Router do
   end
 
   scope "/" do
-    pipe_through :api
-    forward "/api", Absinthe.Plug, schema: TrackerWeb.Schema.Schema
+    pipe_through [:api, :set_current_user]
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: TrackerWeb.Schema.Schema,
-      interface: :simple
+      interface: :playground
+  end
+
+  scope "/" do
+    pipe_through [:api, :set_current_user]
+    forward "/api", Absinthe.Plug, schema: TrackerWeb.Schema.Schema
   end
 
   scope "/", TrackerWeb do

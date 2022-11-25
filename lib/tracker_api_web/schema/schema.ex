@@ -16,4 +16,9 @@ defmodule TrackerWeb.Schema.Schema do
     field :username, non_null(:string)
     field :email, non_null(:string)
   end
+
+  # add more values to context here
+  # def context(ctx) do
+  #   ctx
+  # end
 end
