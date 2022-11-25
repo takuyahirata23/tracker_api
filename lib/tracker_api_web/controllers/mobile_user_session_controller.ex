@@ -3,7 +3,7 @@ defmodule TrackerWeb.MobileUserSessionController do
 
   alias Tracker.Accounts
 
-  def show(conn, attrs) do
+  def register(conn, attrs) do
     case Accounts.register_mobile_user(attrs) do
       {:ok, res} ->
         json(conn, res)
@@ -11,13 +11,15 @@ defmodule TrackerWeb.MobileUserSessionController do
       {:error, res} ->
         json(conn, res)
     end
+  end
 
-    # case Accounts.get_user_by_email_and_password(email, password) do
-    #   nil ->
-    #     json(conn, %{error: "user not found"})
+  def login(conn, %{"email" => email, "password" => password}) do
+    case Accounts.login_mobile_user(email, password) do
+      {:ok, res} ->
+        json(conn, res)
 
-    #   %User{} = user ->
-    #     json(conn, %{user: user})
-    # end
+      {:error, res} ->
+        json(conn, res)
+    end
   end
 end

@@ -41,6 +41,13 @@ defmodule Tracker.Accounts do
     end
   end
 
+  def login_mobile_user(email, password) do
+    case get_user_by_email_and_password(email, password) do
+      nil -> {:error, "Not Found"}
+      %User{} = user -> {:ok, %{user: user, token: Token.sign(user.id)}}
+    end
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
 

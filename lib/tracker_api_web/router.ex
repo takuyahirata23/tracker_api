@@ -112,7 +112,7 @@ defmodule TrackerWeb.Router do
   scope "/", TrackerWeb do
     pipe_through [:api]
 
-    post "/login", MobileUserSessionController, :new
-    post "/login", MobileUserSessionController, :show
+    post "/register", MobileUserSessionController, :register
+    post "/login", MobileUserSessionController, :login
   end
 end
