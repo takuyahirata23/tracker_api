@@ -21,6 +21,10 @@ defmodule TrackerWeb.Router do
     plug Tracker.Plugs.SetCurrentUser
   end
 
+  pipeline :require_current_user do
+    plug Tracker.Plugs.RequireCurrentUser
+  end
+
   scope "/", TrackerWeb do
     pipe_through :browser
 
@@ -101,7 +105,7 @@ defmodule TrackerWeb.Router do
   end
 
   scope "/" do
-    pipe_through [:api, :set_current_user]
+    pipe_through [:api, :set_current_user, :require_current_user]
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: TrackerWeb.Schema.Schema,
@@ -109,7 +113,7 @@ defmodule TrackerWeb.Router do
   end
 
   scope "/" do
-    pipe_through [:api, :set_current_user]
+    pipe_through [:api, :set_current_user, :require_current_user]
     forward "/api", Absinthe.Plug, schema: TrackerWeb.Schema.Schema
   end
 

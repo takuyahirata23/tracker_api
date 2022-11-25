@@ -14,19 +14,7 @@ defmodule Tracker.Plugs.SetCurrentUser do
       %{current_user: Tracker.Accounts.get_user!(id)}
     else
       _ ->
-        %{}
+        %{current_user: nil}
     end
   end
-
-  # with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
-  #      {:ok, data} <- Tracker.Token.verify(token) do
-  #   conn
-  #   |> assign(:current_user, Tracker.Accounts.get_user!(data.user_id))
-  # else
-  #   _error ->
-  #     body = Jason.encode!(%{error: "not authorized"})
-
-  #     conn
-  #     |> send_resp(401, body)
-  # end
 end
