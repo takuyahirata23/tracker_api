@@ -104,4 +104,10 @@ defmodule TrackerWeb.Router do
       schema: TrackerWeb.Schema.Schema,
       interface: :simple
   end
+
+  scope "/", TrackerWeb do
+    pipe_through :api
+
+    post "/login", LoginController, :show
+  end
 end
