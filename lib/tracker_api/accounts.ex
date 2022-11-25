@@ -5,6 +5,7 @@ defmodule Tracker.Accounts do
 
   import Ecto.Query, warn: false
   alias Tracker.Repo
+  alias Tracker.Token
 
   alias Tracker.Accounts.{User, UserToken, UserNotifier}
 
@@ -28,6 +29,16 @@ defmodule Tracker.Accounts do
     %User{}
     |> User.registration_changeset(attrs)
     |> Repo.insert()
+  end
+
+  def register_mobile_user(attrs) do
+    case register_user(attrs) do
+      {:ok, user} ->
+        {:ok, %{user: user, token: Token.sign(user.id)}}
+
+      {:error, changeset} ->
+        {:error, %{errors: changeset.errors}}
+    end
   end
 
   @doc """

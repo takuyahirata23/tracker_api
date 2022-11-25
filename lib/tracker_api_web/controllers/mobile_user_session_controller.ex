@@ -1,12 +1,16 @@
-defmodule TrackerWeb.LoginController do
+defmodule TrackerWeb.MobileUserSessionController do
   use TrackerWeb, :controller
 
   alias Tracker.Accounts
 
-  def show(conn, %{"email" => email, "password" => password}) do
-    user = Accounts.get_user_by_email_and_password(email, password)
+  def show(conn, attrs) do
+    case Accounts.register_mobile_user(attrs) do
+      {:ok, res} ->
+        json(conn, res)
 
-    json(conn, %{user: user, token: "yo"})
+      {:error, res} ->
+        json(conn, res)
+    end
 
     # case Accounts.get_user_by_email_and_password(email, password) do
     #   nil ->

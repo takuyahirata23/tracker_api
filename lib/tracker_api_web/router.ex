@@ -17,6 +17,10 @@ defmodule TrackerWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticated do
+    plug Tracer.Plug.Authenticate
+  end
+
   scope "/", TrackerWeb do
     pipe_through :browser
 
@@ -106,8 +110,9 @@ defmodule TrackerWeb.Router do
   end
 
   scope "/", TrackerWeb do
-    pipe_through :api
+    pipe_through [:api]
 
-    post "/login", LoginController, :show
+    post "/login", MobileUserSessionController, :new
+    post "/login", MobileUserSessionController, :show
   end
 end
