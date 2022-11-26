@@ -8,6 +8,7 @@ defmodule Tracker.Accounts.User do
     field :name, :string
     field :username, :string
     field :email, :string
+    field :is_admin, :boolean
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
