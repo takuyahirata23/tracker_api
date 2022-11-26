@@ -93,6 +93,7 @@ defmodule TrackerWeb.Router do
 
     live "/", DashboardLive, :index
     live "/makes", MakeLive, :index
+    live "/makes/new", MakeLive, :new
   end
 
   scope "/", TrackerWeb do
