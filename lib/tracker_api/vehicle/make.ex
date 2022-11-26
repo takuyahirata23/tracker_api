@@ -7,7 +7,7 @@ defmodule Tracker.Vehicle.Make do
     timestamps()
   end
 
-  def changeset(makes, attrs) do
+  def changeset(makes, attrs \\ %{}) do
     makes
     |> cast(attrs, [:name])
     |> validate_length(:name, min: 2, max: 30)

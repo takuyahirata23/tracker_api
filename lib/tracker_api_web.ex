@@ -98,6 +98,7 @@ defmodule TrackerWeb do
       import Phoenix.View
 
       import TrackerWeb.ErrorHelpers
+      import TrackerWeb.LiveHelpers
       import TrackerWeb.Gettext
       alias TrackerWeb.Router.Helpers, as: Routes
     end
