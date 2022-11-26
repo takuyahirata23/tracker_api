@@ -29,6 +29,8 @@ defmodule TrackerWeb do
 
   def view do
     quote do
+      import Phoenix.Component
+
       use Phoenix.View,
         root: "lib/tracker_api_web/templates",
         namespace: TrackerWeb
