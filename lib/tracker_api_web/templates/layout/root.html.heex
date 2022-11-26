@@ -7,15 +7,12 @@
     <meta name="csrf-token" content={csrf_token_value()}>
     <%= live_title_tag assigns[:page_title] || "Tracker", suffix: " · Phoenix Framework" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body>
-    <header class="flex justify-between">
-      <h1 class="font-bold text-xl">Tracker</h1>
-        <nav>
-          <%= render "_user_menu.html", assigns %>
-        </nav>
-    </header>
+  <body class="font-body text-primary bg-bg-primary mx-auto w-11/12 max-w-7xl">
     <%= @inner_content %>
   </body>
 </html>
