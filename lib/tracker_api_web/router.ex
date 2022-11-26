@@ -105,7 +105,7 @@ defmodule TrackerWeb.Router do
   end
 
   scope "/" do
-    pipe_through [:api, :set_current_user, :require_current_user]
+    pipe_through [:api, :set_current_user]
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: TrackerWeb.Schema.Schema,
