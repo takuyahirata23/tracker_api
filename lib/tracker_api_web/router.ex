@@ -91,7 +91,8 @@ defmodule TrackerWeb.Router do
   scope "/admin", TrackerWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    resources "/makes", Admin.MakeController
+    live "/", DashboardLive, :index
+    live "/makes", MakeLive, :index
   end
 
   scope "/", TrackerWeb do
