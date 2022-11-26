@@ -1,7 +1,21 @@
 <main>
-  <header class="py-8">
+  <header class="py-8 flex justify-between">
     <h1 class="text-xl font-bold">Tracker</h1>
+    <button phx-click={show_mobile_menu()}>
+      <%= Heroicons.icon("bars-3", type: "outline", class: "h-8 w-8") %>
+    </button>
   </header>
+  <nav>
+    <div id="mobile-nav-overlay" class="hidden items-center justify-center absolute inset-0 bg-white/20 z-20">
+      <div id="mobile-nav" class="bg-bg-secondary p-4 rounded-md drop-shadow-md flex flex-col gap-y-2 w-2/3">
+        <button phx-click={close_mobile_menu()} class="ml-auto mb-2">
+      <%= Heroicons.icon("x-mark", type: "outline", class: "h-8 w-8") %>
+    </button>
+        <.link navigate={Routes.dashboard_path(@socket, :index)}>Dashboard</.link>  
+        <.link navigate={Routes.make_path(@socket, :index)}>Motorcycles</.link>  
+      </div>
+    </div>
+  </nav>
   <p  role="alert"
       phx-click="lv:clear-flash"
       phx-value-key="info"><%= live_flash(@flash, :info) %></p>
