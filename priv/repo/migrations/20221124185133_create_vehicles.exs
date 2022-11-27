@@ -18,7 +18,6 @@ defmodule Tracker.Repo.Migrations.CreateVehicles do
     end
 
     create(index(:modals, [:make_id]))
-    create(unique_index(:modals, [:name]))
     create(unique_index(:modals, [:name, :make_id]))
   end
 end
