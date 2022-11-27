@@ -1,5 +1,6 @@
 defmodule TrackerWeb.LiveHelpers do
   use Phoenix.Component
+
   alias Phoenix.LiveView.JS
 
   def show_mobile_menu(js \\ %JS{}) do
@@ -25,6 +26,30 @@ defmodule TrackerWeb.LiveHelpers do
         </div>
       </div>
     </div>
+    """
+  end
+
+  def submit_button(assigns) do
+    ~H"""
+    <button type="submit" class="rounded-md px-2 py-1 bg-btn-primary text-secondary  w-full text-center">
+      Submit
+    </button>
+    """
+  end
+
+  def patch_link(assigns) do
+    assigns = assign_new(assigns, :secondary, fn -> false end)
+
+    ~H"""
+    <%= if @secondary do %>
+      <%= live_patch [to: @patch, class: "py-1 px-2 bg-btn-secondary text-secondary rounded-md text-center w-full"] do%>
+        <%= render_slot(@inner_block) %>
+      <% end %>
+    <% else %>
+      <%= live_patch [to: @patch, class: "py-1 px-2 bg-btn-primary text-secondary rounded-md block w-full text-center"] do%>
+        <%= render_slot(@inner_block) %>
+      <% end %>
+    <% end %>
     """
   end
 end

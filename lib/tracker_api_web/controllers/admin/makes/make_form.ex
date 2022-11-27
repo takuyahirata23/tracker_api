@@ -19,24 +19,4 @@ defmodule TrackerWeb.MakeForm do
         {:noreply, assign(socket, changeset: changeset)}
     end
   end
-
-  def render(assigns) do
-    ~H"""
-    <div>
-    <h3 class="font-bold text-lg mb-4">Create new make</h3>
-    <.form :let={f} for={@changeset} phx-submit="new-make" action="#" class="flex flex-col gap-x-4" phx-target={@myself}>
-    <div>
-    <div class="flex flex-col">
-    <%= label f, :name %>
-    <%= text_input f, :name, required: true , class: "bg-bg-secondary/10"%>
-    <%= error_tag f, :name %>
-    </div>
-    </div>
-    <div>
-    <%= submit "Create" %>
-    </div>
-    </.form>
-    </div>
-    """
-  end
 end

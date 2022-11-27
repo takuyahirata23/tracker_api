@@ -18,7 +18,7 @@ defmodule TrackerWeb.MakeDetailLive do
         ModalComponent.show_modal(%{
           module: ModalForm,
           show: true,
-          make_id: socket.assigns.make.id
+          make_id: socket.assigns.make_id
         })
 
       _ ->
@@ -26,7 +26,6 @@ defmodule TrackerWeb.MakeDetailLive do
     end
 
     make = Vehicle.get_make_by_id(socket.assigns.make_id)
-    IO.inspect(make)
     {:noreply, assign(socket, make: make)}
   end
 end
