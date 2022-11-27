@@ -1,6 +1,10 @@
 <div class="flex justify-between">
   <h2 class="text-lg">Makes</h2>
-  <.link patch={Routes.make_path(@socket, :new)}>New make</.link>
+  <div>
+    <.patch_link patch={Routes.make_path(@socket, :new)}>
+    New make
+    </.patch_link>
+  </div>
 </div>
 <ul class="mt-4">
   <%= for make <- @makes do %>
