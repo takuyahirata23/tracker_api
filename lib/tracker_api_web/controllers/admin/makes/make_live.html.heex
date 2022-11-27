@@ -4,6 +4,6 @@
 </div>
 <ul class="mt-4">
   <%= for make <- @makes do %>
-    <li><h3><%= make.name %></h3></li>
+    <.link navigate={Routes.make_detail_path(@socket, :show, make.id)}><h3><%= make.name %></h3></.link>
   <% end %>
 </ul>

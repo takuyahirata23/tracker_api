@@ -94,6 +94,8 @@ defmodule TrackerWeb.Router do
     live "/", DashboardLive, :index
     live "/makes", MakeLive, :index
     live "/makes/new", MakeLive, :new
+    live "/makes/:make_id", MakeDetailLive, :show
+    live "/makes/:make_id/new", MakeDetailLive, :new
   end
 
   scope "/", TrackerWeb do

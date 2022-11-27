@@ -4,6 +4,9 @@ defmodule Tracker.Vehicle.Make do
 
   schema "makes" do
     field :name, :string
+
+    has_many :modals, Tracker.Vehicle.Modal
+
     timestamps()
   end
 

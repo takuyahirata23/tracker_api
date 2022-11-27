@@ -1,0 +1,11 @@
+<div>
+  <div class="flex justify-between">
+    <h2 class="font-xl font-bold text-secondary"><%= @make.name %></h2>
+    <.link patch={Routes.make_detail_path(@socket, :new, @make.id)}>Creaet new modal</.link>
+  </div>
+  <ul class="flex flex-col gap-y-4 mt-8">
+    <%= for modal <- @make.modals do %>
+      <li><%= modal.name %></li>
+    <% end %>
+  </ul>
+</div>

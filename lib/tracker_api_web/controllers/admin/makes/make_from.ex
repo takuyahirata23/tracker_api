@@ -16,8 +16,6 @@ defmodule TrackerWeb.MakeForm do
         {:noreply, push_patch(socket, to: Routes.make_path(socket, :index))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset)
-        socket = socket |> put_flash(:error, "There was a problem creating a new make")
         {:noreply, assign(socket, changeset: changeset)}
     end
   end
