@@ -37,7 +37,7 @@ defmodule Tracker.Accounts do
         {:ok, %{user: user, token: Token.sign(user.id)}}
 
       {:error, changeset} ->
-        {:error, %{errors: changeset.errors}}
+        {:error, changeset}
     end
   end
 

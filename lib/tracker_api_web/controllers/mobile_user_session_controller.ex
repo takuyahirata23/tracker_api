@@ -5,11 +5,15 @@ defmodule TrackerWeb.MobileUserSessionController do
 
   def register(conn, attrs) do
     case Accounts.register_mobile_user(attrs) do
-      {:ok, res} ->
-        json(conn, res)
+      {:ok, user} ->
+        conn
+        |> put_status(200)
+        |> render("registraion.json", user: user)
 
-      {:error, res} ->
-        json(conn, res)
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_status(400)
+        |> render("invalid_form.json", changeset: changeset)
     end
   end
 
