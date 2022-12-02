@@ -7,6 +7,14 @@ defmodule TrackerWeb.MobileUserSessionView do
   end
 
   def render("registraion.json", %{user: user}) do
-    %{error: false, status: :created, user: user}
+    %{error: false, status: "User created", user: user}
+  end
+
+  def render("user.json", %{user: user}) do
+    %{error: false, status: "User found", user: user}
+  end
+
+  def render("not_found.json", _) do
+    %{error: true, status: "User not found"}
   end
 end
