@@ -37,13 +37,13 @@ defmodule Tracker.Accounts do
         {:ok, %{user: user, token: Token.sign(user.id)}}
 
       {:error, changeset} ->
-        {:error, %{errors: changeset.errors}}
+        {:error, changeset}
     end
   end
 
   def login_mobile_user(email, password) do
     case get_user_by_email_and_password(email, password) do
-      nil -> {:error, "Not Found"}
+      nil -> {:error}
       %User{} = user -> {:ok, %{user: user, token: Token.sign(user.id)}}
     end
   end

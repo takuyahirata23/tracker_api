@@ -34,7 +34,7 @@ defmodule Tracker.Accounts.User do
   defp validate_username(changeset) do
     changeset
     |> validate_required([:username])
-    |> validate_length(:name, min: 2, max: 30)
+    |> validate_length(:username, min: 2, max: 30)
     |> unique_constraint(:username)
     |> validate_format(:username, ~r/^[^\s]+$/, message: "no spaces allowed")
   end
