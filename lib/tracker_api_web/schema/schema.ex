@@ -5,8 +5,8 @@ defmodule TrackerWeb.Schema.Schema do
 
   query do
     @desc "Get list of users"
-    field :users, list_of(:user) do
-      resolve(&Accounts.get_users/3)
+    field :user, non_null(:user) do
+      resolve(&Accounts.get_user/3)
     end
   end
 

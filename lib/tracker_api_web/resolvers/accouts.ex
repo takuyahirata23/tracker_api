@@ -1,7 +1,5 @@
 defmodule TrackerWeb.Resolvers.Accounts do
-  alias Tracker.Accounts
-
-  def get_users(_, _, _) do
-    {:ok, Accounts.get_users()}
+  def get_user(_, _, %{context: %{current_user: user}}) do
+    {:ok, user}
   end
 end
