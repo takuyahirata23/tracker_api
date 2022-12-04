@@ -5,10 +5,10 @@ defmodule TrackerWeb.MobileUserSessionController do
 
   def register(conn, attrs) do
     case Accounts.register_mobile_user(attrs) do
-      {:ok, user} ->
+      {:ok, %{user: user, token: token}} ->
         conn
         |> put_status(201)
-        |> render("registraion.json", user: user)
+        |> render("registraion.json", user: user, token: token)
 
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
@@ -19,10 +19,10 @@ defmodule TrackerWeb.MobileUserSessionController do
 
   def login(conn, %{"email" => email, "password" => password}) do
     case Accounts.login_mobile_user(email, password) do
-      {:ok, user} ->
+      {:ok, %{user: user, token: token}} ->
         conn
         |> put_status(200)
-        |> render("user.json", user: user)
+        |> render("login.json", user: user, token: token)
 
       {:error} ->
         conn
