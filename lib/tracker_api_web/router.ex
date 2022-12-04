@@ -25,6 +25,10 @@ defmodule TrackerWeb.Router do
     plug Tracker.Plugs.RequireCurrentUser
   end
 
+  pipeline :require_admin_user do
+    plug Tracker.Plugs.RequireAdminUser
+  end
+
   scope "/", TrackerWeb do
     pipe_through :browser
 
@@ -89,7 +93,7 @@ defmodule TrackerWeb.Router do
   end
 
   scope "/admin", TrackerWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:browser, :require_authenticated_user, :require_admin_user]
 
     live "/", DashboardLive, :index
     live "/makes", MakeLive, :index
