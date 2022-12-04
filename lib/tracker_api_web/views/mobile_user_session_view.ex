@@ -6,12 +6,12 @@ defmodule TrackerWeb.MobileUserSessionView do
     %{error: true, status: "Invalid form values", errors: changeset}
   end
 
-  def render("registraion.json", %{user: user}) do
-    %{error: false, status: "User created", user: user}
+  def render("registraion.json", %{user: user, token: token}) do
+    %{error: false, status: "User created", user: user, token: token}
   end
 
-  def render("user.json", %{user: user}) do
-    %{error: false, status: "User found", user: user}
+  def render("login.json", %{user: user, token: token}) do
+    %{error: false, status: "User found", user: user, token: token}
   end
 
   def render("not_found.json", _) do
