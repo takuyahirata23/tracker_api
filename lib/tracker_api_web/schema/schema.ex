@@ -1,6 +1,8 @@
 defmodule TrackerWeb.Schema.Schema do
   use Absinthe.Schema
 
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+
   alias TrackerWeb.Resolvers.{
     Accounts,
     Vehicles
@@ -16,7 +18,8 @@ defmodule TrackerWeb.Schema.Schema do
   object :make do
     field :id, non_null(:id)
     field :name, non_null(:string)
-    field :modals, list_of(:modal)
+
+    field :modals, list_of(:modal), resolve: dataloader(Vehicle)
   end
 
   object :modal do
@@ -32,12 +35,22 @@ defmodule TrackerWeb.Schema.Schema do
 
     @desc "Get makes and their modals"
     field :vehicles, list_of(non_null(:make)) do
-      resolve(&Vehicles.get_vehicles/3)
+      resolve(&Vehicles.get_makes/3)
     end
   end
 
-  # add more values to context here
-  # def context(ctx) do
-  #   ctx
-  # end
+  def context(ctx) do
+    source = Dataloader.Ecto.new(Tracker.Repo)
+
+    loader =
+      Dataloader.new()
+      |> Dataloader.add_source(Vehicle, source)
+
+    ctx = Map.put(ctx, :loader, loader)
+    ctx
+  end
+
+  def plugins do
+    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
+  end
 end

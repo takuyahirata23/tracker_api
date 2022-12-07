@@ -26,9 +26,8 @@ defmodule Tracker.Vehicle do
     |> Repo.preload(:modals)
   end
 
-  def get_vehicles do
+  def get_makes do
     Make
     |> Repo.all()
-    |> Repo.preload(:modals)
   end
 end
