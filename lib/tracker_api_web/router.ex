@@ -112,14 +112,10 @@ defmodule TrackerWeb.Router do
     post "/users/confirm/:token", UserConfirmationController, :update
   end
 
-  if Mix.env() == :dev do
-    scope "/" do
-      pipe_through [:api, :set_current_user]
+  scope "/" do
+    pipe_through [:api, :set_current_user]
 
-      forward "/graphiql", Absinthe.Plug.GraphiQL,
-        schema: TrackerWeb.Schema.Schema,
-        interface: :playground
-    end
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: TrackerWeb.Schema.Schema
   end
 
   scope "/" do

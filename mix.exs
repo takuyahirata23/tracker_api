@@ -37,6 +37,7 @@ defmodule Tracker.MixProject do
       {:absinthe_plug, "~> 1.5"},
       {:bcrypt_elixir, "~> 3.0"},
       {:ex_heroicons, "~> 2.0.0"},
+      {:dataloader, "~> 1.0"},
       {:phoenix, "~> 1.6.15"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
