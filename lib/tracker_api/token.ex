@@ -16,7 +16,6 @@ defmodule Tracker.Token do
   """
   def verify(token) do
     key = Application.fetch_env!(:tracker_api, :token_secret_key)
-    IO.inspect(key)
 
     case Phoenix.Token.verify(TrackerWeb.Endpoint, key, token, max_age: @max_age) do
       {:ok, id} -> {:ok, id}
