@@ -29,7 +29,10 @@ defmodule TrackerWeb.Schema.Schema do
   end
 
   object :user_vehicle do
-    field :vehicle, non_null(:modal)
+    field :id, non_null(:id)
+    field :make, non_null(:string)
+    field :modal, non_null(:string)
+    field :year, non_null(:integer)
   end
 
   query do
@@ -53,8 +56,8 @@ defmodule TrackerWeb.Schema.Schema do
     @desc "Register a vihcile to user"
     field :register_user_vehicle, type: non_null(:user_vehicle) do
       arg(:year, non_null(:integer))
-      arg(:modal_id, non_null(:integer))
-      arg(:make_id, non_null(:integer))
+      arg(:modal_id, non_null(:string))
+      arg(:make_id, non_null(:string))
 
       resolve(&Vehicles.register_user_vehicle/3)
     end

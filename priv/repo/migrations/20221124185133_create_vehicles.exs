@@ -2,18 +2,18 @@ defmodule Tracker.Repo.Migrations.CreateVehicles do
   use Ecto.Migration
 
   def change do
-    execute("CREATE EXTENSION IF NOT EXISTS citext", "")
-
-    create table(:makes) do
+    create table(:makes, primary_key: false) do
+      add(:id, :binary_id, primary_key: true)
       add(:name, :citext, null: false)
       timestamps()
     end
 
     create(unique_index(:makes, [:name]))
 
-    create table(:modals) do
+    create table(:modals, primary_key: false) do
+      add(:id, :binary_id, primary_key: true)
       add(:name, :citext, null: false)
-      add(:make_id, references(:makes, on_delete: :delete_all), null: false)
+      add(:make_id, references(:makes, type: :binary_id, on_delete: :delete_all), null: false)
       timestamps()
     end
 

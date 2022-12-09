@@ -5,7 +5,7 @@ defmodule Tracker.Token do
   @doc """
   Create token with user id and sign with secret key
   """
-  def sign(id) when is_integer(id) do
+  def sign(id) when is_binary(id) do
     key = Application.fetch_env!(:tracker_api, :token_secret_key)
     Phoenix.Token.sign(TrackerWeb.Endpoint, key, id)
   end

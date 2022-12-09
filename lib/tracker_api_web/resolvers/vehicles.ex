@@ -1,5 +1,6 @@
 defmodule TrackerWeb.Resolvers.Vehicles do
   alias Tracker.Vehicle
+  alias TrackerWeb.ErrorHelpers
 
   def get_makes(_, _, _) do
     {:ok, Vehicle.get_makes()}
@@ -13,6 +14,18 @@ defmodule TrackerWeb.Resolvers.Vehicles do
         context: %{current_user: current_user}
       }) do
     attrs = Map.put(args, :user_id, current_user.id)
-    Vehicle.register_user_vehicle(attrs)
+
+    case Vehicle.register_user_vehicle(attrs) do
+      {:error, changeset} ->
+        {:error,
+         %{
+           error: true,
+           message: "There was a problem registering a new vehicle",
+           errors: Ecto.Changeset.traverse_errors(changeset, &ErrorHelpers.translate_error/1)
+         }}
+
+      {:ok, user_vehicle} ->
+        {:ok, Vehicle.get_user_vehicle_by_id(user_vehicle.id)}
+    end
   end
 end
