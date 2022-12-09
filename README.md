@@ -1,6 +1,6 @@
 # Tracker
 
-Tracker GraphQL API, and application for admin powered by Elixir and Phoenix
+Tracker GraphQL API, and application for admin powered by Elixir, Phoenix, Postgres, Tailwind
 
 - GraphQL API for clients
 - Admin application for content management
