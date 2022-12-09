@@ -25,6 +25,11 @@ defmodule TrackerWeb.Schema.Schema do
   object :modal do
     field :id, non_null(:id)
     field :name, non_null(:string)
+    field :make, non_null(:make), resolve: dataloader(Vehicle)
+  end
+
+  object :user_vehicle do
+    field :vehicle, non_null(:modal)
   end
 
   query do
@@ -36,6 +41,22 @@ defmodule TrackerWeb.Schema.Schema do
     @desc "Get makes and their modals"
     field :vehicles, list_of(non_null(:make)) do
       resolve(&Vehicles.get_makes/3)
+    end
+
+    @desc "Get user vehicles"
+    field :user_vehicles, list_of(non_null(:user_vehicle)) do
+      resolve(&Vehicles.get_user_vehicles/3)
+    end
+  end
+
+  mutation do
+    @desc "Register a vihcile to user"
+    field :register_user_vehicle, type: non_null(:user_vehicle) do
+      arg(:year, non_null(:integer))
+      arg(:modal_id, non_null(:integer))
+      arg(:make_id, non_null(:integer))
+
+      resolve(&Vehicles.register_user_vehicle/3)
     end
   end
 
