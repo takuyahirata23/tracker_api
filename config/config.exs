@@ -10,7 +10,8 @@ import Config
 
 config :tracker_api,
   namespace: Tracker,
-  ecto_repos: [Tracker.Repo]
+  ecto_repos: [Tracker.Repo],
+  generators: [binary_id: true]
 
 # Configures the endpoint
 config :tracker_api, TrackerWeb.Endpoint,
