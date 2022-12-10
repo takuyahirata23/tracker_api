@@ -10,16 +10,16 @@ defmodule TrackerWeb.Resolvers.Vehicles do
     {:ok, Vehicle.get_modals_by_make_id(make_id)}
   end
 
-  def get_user_vehicles(_, _, %{context: %{current_user: current_user}}) do
-    {:ok, Vehicle.get_user_vehicles(current_user.id)}
+  def get_motorcycles(_, _, %{context: %{current_user: current_user}}) do
+    {:ok, Vehicle.get_motorcycles(current_user.id)}
   end
 
-  def register_user_vehicle(_, args, %{
+  def register_motorcycle(_, %{motorcycle_input: attrs}, %{
         context: %{current_user: current_user}
       }) do
-    attrs = Map.put(args, :user_id, current_user.id)
+    attrs = Map.put(attrs, :user_id, current_user.id)
 
-    case Vehicle.register_user_vehicle(attrs) do
+    case Vehicle.register_motorcycle(attrs) do
       {:error, changeset} ->
         {:error,
          %{
@@ -28,8 +28,8 @@ defmodule TrackerWeb.Resolvers.Vehicles do
            errors: Ecto.Changeset.traverse_errors(changeset, &ErrorHelpers.translate_error/1)
          }}
 
-      {:ok, user_vehicle} ->
-        {:ok, Vehicle.get_user_vehicle_by_id(user_vehicle.id)}
+      {:ok, motorcycle} ->
+        {:ok, Vehicle.get_motorcycle_by_id(motorcycle.id)}
     end
   end
 end

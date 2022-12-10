@@ -1,4 +1,4 @@
-defmodule Tracker.Schema.UserTypes do
+defmodule TrackerWeb.Schema.UserTypes do
   use Absinthe.Schema.Notation
 
   alias TrackerWeb.Resolvers.Accounts
