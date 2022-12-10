@@ -1,7 +1,7 @@
 defmodule TrackerWeb.MakeDetailLive do
   use TrackerWeb, :live_view
 
-  alias Tracker.Vehicle
+  alias Tracker.AdminVehicle
 
   alias TrackerWeb.{
     ModalComponent,
@@ -25,7 +25,7 @@ defmodule TrackerWeb.MakeDetailLive do
         ModalComponent.close_modal()
     end
 
-    make = Vehicle.get_make_by_id(socket.assigns.make_id)
+    make = AdminVehicle.admin_get_make_by_id(socket.assigns.make_id)
     {:noreply, assign(socket, make: make)}
   end
 end

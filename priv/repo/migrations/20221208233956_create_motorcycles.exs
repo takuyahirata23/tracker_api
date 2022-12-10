@@ -1,8 +1,8 @@
-defmodule Tracker.Repo.Migrations.CreateUserVehicles do
+defmodule Tracker.Repo.Migrations.CreateMotorcycles do
   use Ecto.Migration
 
   def change do
-    create table(:user_vehicles, primary_key: false) do
+    create table(:motorcycles, primary_key: false) do
       add(:id, :binary_id, primary_key: true)
       add(:year, :integer, null: false)
       add(:user_id, references(:users, type: :binary_id, on_delete: :delete_all), null: false)
@@ -12,7 +12,7 @@ defmodule Tracker.Repo.Migrations.CreateUserVehicles do
       timestamps()
     end
 
-    create(index(:user_vehicles, [:user_id]))
-    create(unique_index(:user_vehicles, [:user_id, :modal_id, :year, :make_id]))
+    create(index(:motorcycles, [:user_id]))
+    create(unique_index(:motorcycles, [:user_id, :modal_id, :year, :make_id]))
   end
 end

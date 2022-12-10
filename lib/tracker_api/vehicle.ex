@@ -32,11 +32,6 @@ defmodule Tracker.Vehicle do
     |> Repo.insert()
   end
 
-  def get_make_by_id(id) when is_binary(id) do
-    Make
-    |> Repo.get_by(id: id)
-  end
-
   def get_user_vehicle_by_id(id) when is_binary(id) do
     UserVehicle
     |> join(:inner, [uv], ma in Make, on: uv.make_id == ma.id)
