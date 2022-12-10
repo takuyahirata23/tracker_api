@@ -3,17 +3,11 @@ defmodule TrackerWeb.Schema.Schema do
 
   import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
-  alias TrackerWeb.Resolvers.{
-    Accounts,
-    Vehicles
-  }
+  alias TrackerWeb.Resolvers.Vehicles
 
-  object :user do
-    field :id, non_null(:id)
-    field :name, non_null(:string)
-    field :username, non_null(:string)
-    field :email, non_null(:string)
-  end
+  alias Tracker.Schema
+
+  import_types(Schema.UserTypes)
 
   object :make do
     field :id, non_null(:id)
@@ -36,10 +30,7 @@ defmodule TrackerWeb.Schema.Schema do
   end
 
   query do
-    @desc "Get current user"
-    field :user, non_null(:user) do
-      resolve(&Accounts.get_user/3)
-    end
+    import_fields(:user_queries)
 
     @desc "Get makes and their modals"
     field :vehicles, list_of(non_null(:make)) do
