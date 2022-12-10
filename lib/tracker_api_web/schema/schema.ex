@@ -7,12 +7,14 @@ defmodule TrackerWeb.Schema.Schema do
   import_types(Schema.MakeTypes)
   import_types(Schema.ModalTypes)
   import_types(Schema.MotorcycleTypes)
+  import_types(Schema.TrackTypes)
 
   query do
     import_fields(:user_queries)
     import_fields(:make_queries)
     import_fields(:modal_queries)
     import_fields(:motorcycle_queries)
+    import_fields(:track_queries)
   end
 
   mutation do
