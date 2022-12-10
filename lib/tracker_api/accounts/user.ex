@@ -5,7 +5,7 @@ defmodule Tracker.Accounts.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @derive {Jason.Encoder, only: [:id, :name, :username, :inserted_at]}
+  @derive {Jason.Encoder, only: [:id, :email, :name, :username, :inserted_at]}
 
   schema "users" do
     field :name, :string
