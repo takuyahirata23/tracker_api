@@ -19,6 +19,7 @@ defmodule TrackerWeb.Schema.Schema do
 
   mutation do
     import_fields(:motorcycle_mutations)
+    import_fields(:track_mutations)
   end
 
   def context(ctx) do
