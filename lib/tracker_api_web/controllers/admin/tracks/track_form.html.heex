@@ -1,0 +1,38 @@
+<div>
+    <h3 class="font-bold text-lg mb-4">Create new track</h3>
+    <.form :let={f} for={@changeset} phx-submit="new-track" action="#" class="flex flex-col gap-x-4" phx-target={@myself}>
+    <div>
+        <div class="flex flex-col">
+            <%= label f, :name %>
+            <%= text_input f, :name, required: true , class: "bg-bg-secondary/10"%>
+            <%= error_tag f, :name %>
+        </div>
+        <div class="flex flex-col">
+            <%= label f, :description %>
+            <%= text_input f, :description, required: false , class: "bg-bg-secondary/10"%>
+            <%= error_tag f, :description %>
+        </div>
+        <div class="flex flex-col">
+            <%= label f, :length %>
+            <%= number_input f, :length, required: true , step: 0.01,class: "bg-bg-secondary/10"%>
+            <%= error_tag f, :length %>
+        </div>
+        <div class="flex flex-col">
+            <%= label f, :latitude %>
+            <%= number_input f, :latitude, required: true , step: 0.0001,class: "bg-bg-secondary/10"%>
+            <%= error_tag f, :latitude %>
+        </div>
+        <div class="flex flex-col">
+            <%= label f, :longitude %>
+            <%= number_input f, :longitude, required: true , step: 0.0001, class: "bg-bg-secondary/10"%>
+            <%= error_tag f, :longitude %>
+        </div>
+    </div>
+    <div class="flex gap-x-4 mt-8 w-3/4 mx-auto">
+        <.patch_link patch={Routes.track_path(@socket, :index)} secondary={true}>
+        Cancel
+        </.patch_link>
+        <.submit_button />
+    </div>
+    </.form>
+</div>

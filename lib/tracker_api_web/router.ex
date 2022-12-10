@@ -100,6 +100,8 @@ defmodule TrackerWeb.Router do
     live "/makes/new", MakeLive, :new
     live "/makes/:make_id", MakeDetailLive, :show
     live "/makes/:make_id/new", MakeDetailLive, :new
+    live "/tracks", TrackLive, :index
+    live "/tracks/new", TrackLive, :new
   end
 
   scope "/", TrackerWeb do

@@ -1,0 +1,14 @@
+<div class="flex justify-between">
+  <h2 class="text-lg">Tracks</h2>
+  <div>
+    <.patch_link patch={Routes.track_path(@socket, :new)}>
+    New track
+    </.patch_link>
+  </div>
+</div>
+<ul class="mt-4">
+  <%= for track <- @tracks do %>
+      <p><%= track.name %></p>
+  <% end %>
+</ul>
+    <%# <.link navigate={Routes.make_detail_path(@socket, :show, make.id)}><h3><%= make.name %1></h3></.link> %>
