@@ -46,6 +46,12 @@ defmodule TrackerWeb.Schema.Schema do
       resolve(&Vehicles.get_makes/3)
     end
 
+    @desc "Get modals of specific make"
+    field :modals, list_of(non_null(:modal)) do
+      arg(:make_id, :string)
+      resolve(&Vehicles.get_modals_by_make_id/3)
+    end
+
     @desc "Get user vehicles"
     field :user_vehicles, list_of(non_null(:user_vehicle)) do
       resolve(&Vehicles.get_user_vehicles/3)

@@ -6,6 +6,10 @@ defmodule TrackerWeb.Resolvers.Vehicles do
     {:ok, Vehicle.get_makes()}
   end
 
+  def get_modals_by_make_id(_, %{make_id: make_id}, _) do
+    {:ok, Vehicle.get_modals_by_make_id(make_id)}
+  end
+
   def get_user_vehicles(_, _, %{context: %{current_user: current_user}}) do
     {:ok, Vehicle.get_user_vehicles(current_user.id)}
   end

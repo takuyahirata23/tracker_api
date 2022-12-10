@@ -10,8 +10,14 @@ defmodule Tracker.Vehicle do
     |> Repo.insert()
   end
 
-  def get_makes do
+  def get_makes() do
     Repo.all(Make)
+  end
+
+  def get_modals_by_make_id(make_id) when is_binary(make_id) do
+    Modal
+    |> where([m], m.make_id == ^make_id)
+    |> Repo.all()
   end
 
   def create_modal(attrs) do
