@@ -23,9 +23,8 @@ defmodule TrackerWeb.Resolvers.Vehicles do
       {:error, changeset} ->
         {:error,
          %{
-           error: true,
            message: "There was a problem registering a new vehicle",
-           errors: Ecto.Changeset.traverse_errors(changeset, &ErrorHelpers.translate_error/1)
+           details: Ecto.Changeset.traverse_errors(changeset, &ErrorHelpers.translate_error/1)
          }}
 
       {:ok, motorcycle} ->
