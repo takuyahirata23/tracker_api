@@ -27,6 +27,12 @@ defmodule TrackerWeb.Schema.TrackTypes do
     field :user_tracks, list_of(non_null(:user_track)) do
       resolve(&TracksResolver.get_all_user_tracks/3)
     end
+
+    @desc "Get user track by ID"
+    field :user_track, :user_track do
+      arg(:user_track_id, non_null(:string))
+      resolve(&TracksResolver.get_user_track_by_id/3)
+    end
   end
 
   object :track_mutations do

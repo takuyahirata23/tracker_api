@@ -25,4 +25,8 @@ defmodule TrackerWeb.Resolvers.Tracks do
   def get_all_user_tracks(_, _, %{context: %{current_user: current_user}}) do
     {:ok, Tracks.get_all_user_tracks_by_id(current_user.id)}
   end
+
+  def get_user_track_by_id(_, %{user_track_id: user_track_id}, _) do
+    {:ok, Tracks.get_user_track_by_id(user_track_id)}
+  end
 end
