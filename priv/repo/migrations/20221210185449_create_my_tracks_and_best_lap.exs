@@ -15,10 +15,10 @@ defmodule Tracker.Repo.Migrations.CreateMyTracksAndBestLap do
 
     create table(:best_lap_times, primary_key: false) do
       add(:id, :binary_id, primary_key: true)
-      add(:minute, :integer, default: 0)
+      add(:minutes, :integer, default: 0)
       add(:seconds, :integer, null: false)
       add(:miliseconds, :integer, default: 0)
-      add(:date, :utc_datetime, null: false)
+      add(:date, :date, null: false)
 
       add(:motorcycle_id, references(:motorcycles, type: :binary_id, on_delete: :delete_all),
         null: false

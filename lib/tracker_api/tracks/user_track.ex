@@ -9,6 +9,8 @@ defmodule Tracker.Tracks.UserTrack do
     belongs_to :user, Tracker.Accounts.User
     belongs_to :track, Tracker.Tracks.Track
 
+    has_many :best_lap_times, Tracker.Record.BestLapTime
+
     timestamps()
   end
 

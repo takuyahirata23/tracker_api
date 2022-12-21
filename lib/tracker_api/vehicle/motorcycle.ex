@@ -12,6 +12,8 @@ defmodule Tracker.Vehicle.Motorcycle do
     belongs_to :make, Tracker.Vehicle.Make
     belongs_to :modal, Tracker.Vehicle.Modal
 
+    has_many :best_lap_times, Tracker.Record.BestTimeLap
+
     timestamps()
   end
 
