@@ -5,7 +5,7 @@ defmodule Tracer.Record do
   alias Tracker.Record.BestLapTime
 
   def get_best_lap_times_by_user_track_id(id) when is_binary(id) do
-    BestTimeLap
+    BestLapTime
     |> where([btl], btl.user_track_id == ^id)
     |> Repo.all()
   end
@@ -34,6 +34,5 @@ defmodule Tracer.Record do
     |> where([blt], blt.motorcycle_id == ^motorcycle_id and blt.user_track_id == ^user_track_id)
     |> where([blt], blt.date == ^date)
     |> Repo.one()
-    |> IO.inspect()
   end
 end
