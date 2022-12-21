@@ -8,6 +8,7 @@ defmodule TrackerWeb.Schema.Schema do
   import_types(Schema.ModalTypes)
   import_types(Schema.MotorcycleTypes)
   import_types(Schema.TrackTypes)
+  import_types(Schema.BestLapTimeTypes)
 
   query do
     import_fields(:user_queries)
@@ -15,11 +16,13 @@ defmodule TrackerWeb.Schema.Schema do
     import_fields(:modal_queries)
     import_fields(:motorcycle_queries)
     import_fields(:track_queries)
+    import_fields(:best_lap_time_queries)
   end
 
   mutation do
     import_fields(:motorcycle_mutations)
     import_fields(:track_mutations)
+    import_fields(:best_lap_time_mutations)
   end
 
   def context(ctx) do
