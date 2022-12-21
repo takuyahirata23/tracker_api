@@ -23,7 +23,7 @@ defmodule TrackerWeb.Schema.BestLapTimeTypes do
   object :best_lap_time_queries do
     @desc "Get best lap times for specific track"
     field :best_lap_times, list_of(non_null(:best_lap_time)) do
-      arg(:user_track_id, non_null(:id))
+      arg(:user_track_id, non_null(:string))
       resolve(&RecordResolver.get_best_lap_times_for_specific_track/3)
     end
   end
